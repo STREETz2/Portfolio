@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>register</title>
+</head>
+<body>
+    
+    <div>
+        <h2>Sign up </h2>
+        {% for message in messages %}
+        <h5 style="color: red; font-family: arial;">{{message}}</h5>
+        {% endfor %}
+
+        <form method="POST" action="register">
+            {% csrf_token %}
+            <p>Enter a username</p>
+            <input type="text" name="username">
+            <p>Enter your email</p>
+            <input type="text" name="email">
+            <p>Enter password</p>
+            <input type="password" name="password">
+            <p>confirm password</p>
+            <input type="password" name="password2"><br>
+            <input type="submit">
+        </form>
+    </div>
+    
+</body>
+</html>

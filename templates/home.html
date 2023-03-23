@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <title>home</title>
+    <link rel="stylesheet"  href="{% static 'css/style.css' %}">
+</head>
+<body class="bodi">
+    <div class="topbar">
+        <div class="h1_portfolio">
+            {% if user.is_authenticated %}
+            <h1 style="font-family: arial; color: grey; margin-top: 20px;">Welcome, {{user.username}} this is MY PORTFOLIO</h1>
+            {% else %}
+            <h1 style="font-family: arial; color: grey; margin-top: 20px;"> MY PORTFOLIO</h1>
+            {% endif %}
+            
+        </div>
+        <div class="loginout">
+            {% if user.is_authenticated %}
+             <button class="logout"><a class="logout_a" href="logout"> log out</a></button>
+             {% else %}
+             <button class="logout"><a class="logout_a" href="login">signup or login</a></button>
+             {% endif %}
+        </div>
+    </div>
+    {% for data in resume %}
+    <div class="div_context">
+        <p style="margin-right: 20px;">{{data.name}}</p>
+        <p>{{data.details}}</p>
+    </div>
+    {% endfor %}
+    <div style="font-family: arial; margin-bottom: 50px;">
+        <h1 style="color: gray;">lets know how much you know</h1>
+        <form method="post" action="counter">
+            {% csrf_token %}
+            <textarea name="text" id="" cols="50" rows="25"> </textarea><br>
+            <input type="submit" style="cursor: pointer;">
+        </form>
+    </div>
+</body>
+</html>
